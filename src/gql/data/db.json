@@ -1,0 +1,62 @@
+{
+  "tweets": [
+    {
+      "id": "1",
+      "body": "First tweet!",
+      "date": "2023-06-20T00:00:00.000Z",
+      "Author": { "id": "1" },
+      "Stats": { "views": 10, "likes": 5, "retweets": 2, "responses": 3 }
+    },
+    {
+      "id": "2",
+      "body": "Hello, GraphQL!",
+      "date": "2023-06-21T00:00:00.000Z",
+      "Author": { "id": "2" },
+      "Stats": { "views": 20, "likes": 10, "retweets": 5, "responses": 8 }
+    },
+    {
+      "id": "3",
+      "body": "Having a great day!",
+      "date": "2023-06-22T00:00:00.000Z",
+      "Author": { "id": "1" },
+      "Stats": { "views": 15, "likes": 7, "retweets": 3, "responses": 2 }
+    },
+    {
+      "id": "4",
+      "body": "Excited for the weekend!",
+      "date": "2023-06-22T00:00:00.000Z",
+      "Author": { "id": "2" },
+      "Stats": { "views": 8, "likes": 3, "retweets": 1, "responses": 0 }
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "john_doe",
+      "first_name": "John",
+      "last_name": "Doe",
+      "full_name": "John Doe",
+      "avatar_url": "https://i.snipboard.io/C0Y7Pz.jpg"
+    },
+    {
+      "id": "2",
+      "username": "jane_smith",
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "full_name": "Jane Smith",
+      "avatar_url": "https://i.snipboard.io/C0Y7Pz.jpg"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "date": "2023-06-20T00:00:00.000Z",
+      "type": "message"
+    },
+    {
+      "id": "2",
+      "date": "2023-06-21T00:00:00.000Z",
+      "type": "like"
+    }
+  ]
+}
