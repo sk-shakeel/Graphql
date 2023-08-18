@@ -1,5 +1,8 @@
-const  db  = require("../data/db.json");
+const db = require("../data/db.json");
 const { v1: uuid } = require("uuid");
+const { PubSub } = require("graphql-subscriptions");
+
+const pubsub = new PubSub();
 
 exports.resolvers = {
   Query: {
@@ -63,10 +66,16 @@ exports.resolvers = {
         body: body,
         date: new Date(),
         Stats: { views: 0, likes: 0, retweets: 0, responses: 0 },
-        Author: db.users.find((user) => user.id === '1'),
+        Author: getAuthor(1),
       };
-      console.log(db.users.find((user) => user.id === '1'));
+      console.log(db.users);
       db.tweets.push(newTweet);
+
+
+      pubsub.publish("TWEETS_CREATED", {
+        TweetsUpdated: newTweet,
+      });
+
       return newTweet;
     },
 
@@ -74,6 +83,11 @@ exports.resolvers = {
       let tweetToDelete = db.tweets.find((tweet) => tweet.id === id);
       if (tweetToDelete) {
         db.tweets = db.tweets.filter((tweet) => tweet.id !== id);
+        
+        pubsub.publish("TWEETS_DELETED", {
+          TweetsUpdated: db.tweets,
+        });    
+        
         return "deleted the tweet";
       }
       throw new Error("Couldn't find tweet");
@@ -91,6 +105,12 @@ exports.resolvers = {
       return true;
     },
   },
+  Subscription: {
+    TweetsUpdated: {
+      subscribe: () => pubsub.asyncIterator(["TWEETS_CREATED", "TWEETS_DELETED"]),
+    },
+  },
+  
 };
 
 function sortByFieldAsc(field) {

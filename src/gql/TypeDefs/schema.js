@@ -91,4 +91,9 @@ exports.typeDefs = gql`
   }
   scalar Url
   scalar Date
+
+  type Subscription {
+    TweetsUpdated: [Tweet]
+  }
+  
 `;
